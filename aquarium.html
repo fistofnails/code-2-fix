@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ocean Animals</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body class="animal-page">
+    <video class="video-background" autoplay muted loop playsinline preload="auto" controls="false" controlslist="nodownload nofullscreen noplaybackrate" disablepictureinpicture aria-hidden="true">
+        <source src="photos/Screen%20Recording%202026-10-13%20144509.mp4" type="video/mp4">
+    </video>
+    <div class="video-overlay" aria-hidden="true"></div>
+    <div class="page-shell">
+        <nav class="site-nav">
+            <a href="landing page.html" class="brand" aria-label="Oceanic home">
+                <div class="logo-mark">O</div>
+                <span>Oceanic</span>
+            </a>
+            <ul>
+                <li><a href="#">About</a></li>
+                <li><a href="aquarium.html" class="active">Animals</a></li>
+                <li><a href="#">Where</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+            <a href="sign in.html" class="sign-in">Sign in</a>
+        </nav>
+
+        <header class="hero">
+            <div class="hero-copy">
+                <p class="eyebrow">Ocean Wonders</p>
+                <h1>Meet the amazing animals of the sea</h1>
+                <p>
+                    Explore the colorful world beneath the waves, from graceful sharks to glowing corals and playful reef fish.
+                    Every marine animal has its own role in the ocean ecosystem.
+                </p>
+            </div>
+            <div class="hero-stats">
+                <div>
+                    <strong>60+</strong>
+                    <span>marine species</span>
+                </div>
+                <div>
+                    <strong>12</strong>
+                    <span>reef habitats</span>
+                </div>
+                <div>
+                    <strong>100%</strong>
+                    <span>ocean wonder</span>
+                </div>
+            </div>
+        </header>
+
+        <section class="animal-collection">
+            <div class="section-heading">
+                <p class="eyebrow">Featured animals</p>
+                <h2>Explore the reef</h2>
+            </div>
+
+            <div class="animal-grid" id="animalGrid"></div>
+        </section>
+
+        <section class="ocean-note">
+            <div>
+                <p class="eyebrow">Why it matters</p>
+                <h2>The ocean is home to thousands of species.</h2>
+            </div>
+            <p>
+                Healthy oceans regulate climate, support food chains, and protect biodiversity. Coral reefs, sharks,
+                and smaller reef fish all depend on clean, balanced waters to survive.
+            </p>
+        </section>
+    </div>
+
+    <script>
+        const animals = [
+            { slug: 'blue-whale', name: 'blue whale', type: 'Mammal', description: 'Largest mammal on Earth', image: 'photos/blue whale.jpg'},
+            { slug: 'great-white-shark', name: 'Great White', type: 'Predator', description: 'Powerful ocean hunter', image: 'photos/great.jpg' },
+            { slug: 'whale-shark', name: 'Whale Shark', type: 'Fish', description: 'Gentle giant of the sea', image: 'photos/while shark.jpg' },
+            { slug: 'tiger-shark', name: 'Tiger Shark', type: 'Predator', description: 'Strong coastal hunter', image: 'photos/tiger shark.jpg' },
+            { slug: 'hammerhead-shark', name: 'Hammerhead', type: 'Shark', description: 'Wide-eyed hunter', image: 'photos/hammerhead.png' },
+            { slug: 'bull-shark', name: 'Bull Shark', type: 'Shark', description: 'Powerful river-to-sea swimmer', image: 'photos/jeff.jpg' },
+            { slug: 'blacktip-reef-shark', name: 'Blacktip Reef Shark', type: 'Shark', description: 'Fast reef patrol swimmer', image: 'photos/blacktip reef shark.jpg' },
+            { slug: 'manta-ray', name: 'Manta Ray', type: 'Ray', description: 'Majestic glider of the open sea', image: 'photos/manta ray.jpg' },
+            { slug: 'stingray', name: 'Stingray', type: 'Ray', description: 'Smooth seafloor cruiser', image: 'photos/stingray.jpg' },
+            { slug: 'sea-turtle', name: 'Sea Turtle', type: 'Reptile', description: 'Ancient ocean traveler', image: 'photos/sea turtle.jpg' },
+            { slug: 'green-sea-turtle', name: 'Green Sea Turtle', type: 'Reptile', description: 'Seagrass grazer', image: 'photos/green sea turtle.jpg' },
+            { slug: 'hawksbill-turtle', name: 'Hawksbill Turtle', type: 'Reptile', description: 'Coral reef traveler', image: 'photos/hawksbill sea turtle.jpg' },
+            { slug: 'leatherback-turtle', name: 'Leatherback', type: 'Reptile', description: 'Cold-water giant', image: 'photos/leatherback.jpg' },
+            { slug: 'clownfish', name: 'Clownfish', type: 'Fish', description: 'Colorful reef defender', image: 'photos/clownfish.jpg' },
+            { slug: 'angelfish', name: 'Angelfish', type: 'Fish', description: 'Elegant reef fish', image: 'photos/anglefish.jpg' },
+            { slug: 'seahorse', name: 'Seahorse', type: 'Fish', description: 'Tiny master of disguise', image: 'photos/seahores.jpg' },
+            { slug: 'butterflyfish', name: 'Butterflyfish', type: 'Fish', description: 'Colorful reef grazer', image: 'photos/butterfly fish.jpg' },
+            { slug: 'parrotfish', name: 'Parrotfish', type: 'Fish', description: 'Coral crunching grazer', image: 'photos/parrit fish.jpg' },
+            { slug: 'wrasse', name: 'Wrasse', type: 'Fish', description: 'Curious reef cleaner', image: 'photos/wrasse.jpg' },
+            { slug: 'lionfish', name: 'Lionfish', type: 'Fish', description: 'Venomous striped hunter', image: 'photos/sealion.jpg' },
+            { slug: 'moray-eel', name: 'Moray Eel', type: 'Fish', description: 'Hidden reef hunter', image: 'moray eel.jpg' },
+            { slug: 'octopus', name: 'Octopus', type: 'Cephalopod', description: 'Master of camouflage', image: 'octopus.jpg' },
+            { slug: 'cuttlefish', name: 'Cuttlefish', type: 'Cephalopod', description: 'Color-shifting hunter', image: 'cuttlefish.jpg' },
+            { slug: 'squid', name: 'Squid', type: 'Cephalopod', description: 'Swift ocean swimmer', image: 'squid.jpg' },
+            { slug: 'jellyfish', name: 'Jellyfish', type: 'Invertebrate', description: 'Soft swimmer of the deep', image: 'jellyfish.jpg' },
+            { slug: 'sea-anemone', name: 'Sea Anemone', type: 'Cnidarian', description: 'Blooming reef protector', image: 'sea anemone.jpg' },
+            { slug: 'brain-coral', name: 'Brain Coral', type: 'Coral', description: 'Reef-building coral', image: 'https://images.unsplash.com/photo-1583212292454-1fe6229603b7?auto=format&fit=crop&w=900&q=80' },
+            { slug: 'fan-coral', name: 'Fan Coral', type: 'Coral', description: 'Wave-shaped reef giant', image: 'https://images.unsplash.com/photo-1524704796725-9fc3044a58b2?auto=format&fit=crop&w=900&q=80' },
+            { slug: 'staghorn-coral', name: 'Staghorn Coral', type: 'Coral', description: 'Quick-growing reef builder', image: 'https://images.unsplash.com/photo-1583212292454-1fe6229603b7?auto=format&fit=crop&w=900&q=80' },
+            { slug: 'soft-coral', name: 'Soft Coral', type: 'Coral', description: 'Swaying reef beauty', image: 'https://images.unsplash.com/photo-1524704796725-9fc3044a58b2?auto=format&fit=crop&w=900&q=80' },
+            { slug: 'sea-otter', name: 'Sea Otter', type: 'Mammal', description: 'Kelp forest helper', image: 'https://images.unsplash.com/photo-1524704796725-9fc3044a58b2?auto=format&fit=crop&w=900&q=80' },
+            { slug: 'dolphin', name: 'Dolphin', type: 'Mammal', description: 'Smart and social swimmer', image: 'https://images.unsplash.com/photo-1544551763-46a013bb70b5?auto=format&fit=crop&w=900&q=80' },
+            { slug: 'orca', name: 'Orca', type: 'Mammal', description: 'Top predator of the sea', image: 'https://images.unsplash.com/photo-1544551763-46a013bb70b5?auto=format&fit=crop&w=900&q=80' },
+            { slug: 'narwhal', name: 'Narwhal', type: 'Mammal', description: 'Arctic unicorn of the ocean', image: 'https://images.unsplash.com/photo-1544551763-46a013bb70b5?auto=format&fit=crop&w=900&q=80' },
+            { slug: 'beluga-whale', name: 'Beluga Whale', type: 'Mammal', description: 'Playful Arctic singer', image: 'https://images.unsplash.com/photo-1544551763-46a013bb70b5?auto=format&fit=crop&w=900&q=80' },
+            { slug: 'salmon', name: 'Salmon', type: 'Fish', description: 'Strong river-to-ocean traveler', image: 'https://images.unsplash.com/photo-1544551763-46a013bb70b5?auto=format&fit=crop&w=900&q=80' },
+            { slug: 'herring', name: 'Herring', type: 'Fish', description: 'Tiny schooling powerhouse', image: 'https://images.unsplash.com/photo-1544551763-46a013bb70b5?auto=format&fit=crop&w=900&q=80' },
+            { slug: 'sardine', name: 'Sardine', type: 'Fish', description: 'Ocean schooling fish', image: 'https://images.unsplash.com/photo-1544551763-46a013bb70b5?auto=format&fit=crop&w=900&q=80' },
+            { slug: 'goby', name: 'Goby', type: 'Fish', description: 'Small reef keeper', image: 'https://images.unsplash.com/photo-1524704796725-9fc3044a58b2?auto=format&fit=crop&w=900&q=80' },
+            { slug: 'pufferfish', name: 'Pufferfish', type: 'Fish', description: 'Inflating reef survivor', image: 'https://images.unsplash.com/photo-1524704796725-9fc3044a58b2?auto=format&fit=crop&w=900&q=80' },
+            { slug: 'triggerfish', name: 'Triggerfish', type: 'Fish', description: 'Hardy reef defender', image: 'https://images.unsplash.com/photo-1524704796725-9fc3044a58b2?auto=format&fit=crop&w=900&q=80' },
+            { slug: 'surgeonfish', name: 'Surgeonfish', type: 'Fish', description: 'Bright reef grazer', image: 'https://images.unsplash.com/photo-1524704796725-9fc3044a58b2?auto=format&fit=crop&w=900&q=80' },
+            { slug: 'trumpetfish', name: 'Trumpetfish', type: 'Fish', description: 'Camouflaged ambush hunter', image: 'https://images.unsplash.com/photo-1524704796725-9fc3044a58b2?auto=format&fit=crop&w=900&q=80' },
+            { slug: 'moonfish', name: 'Moonfish', type: 'Fish', description: 'Circular open-ocean swimmer', image: 'https://images.unsplash.com/photo-1544551763-46a013bb70b5?auto=format&fit=crop&w=900&q=80' },
+            { slug: 'barracuda', name: 'Barracuda', type: 'Fish', description: 'Fast open-water hunter', image: 'https://images.unsplash.com/photo-1544551763-46a013bb70b5?auto=format&fit=crop&w=900&q=80' },
+            { slug: 'turtle-ray', name: 'Turtle Ray', type: 'Ray', description: 'Broad-bodied seafloor explorer', image: 'https://images.unsplash.com/photo-1578328819058-b69f3a3d0f31?auto=format&fit=crop&w=900&q=80' },
+            { slug: 'rockfish', name: 'Rockfish', type: 'Fish', description: 'Coastal shelter swimmer', image: 'https://images.unsplash.com/photo-1524704796725-9fc3044a58b2?auto=format&fit=crop&w=900&q=80' },
+            { slug: 'grouper', name: 'Grouper', type: 'Fish', description: 'Big reef predator', image: 'https://images.unsplash.com/photo-1524704796725-9fc3044a58b2?auto=format&fit=crop&w=900&q=80' },
+            { slug: 'snapper', name: 'Snapper', type: 'Fish', description: 'Feisty reef fish', image: 'https://images.unsplash.com/photo-1524704796725-9fc3044a58b2?auto=format&fit=crop&w=900&q=80' },
+            { slug: 'lanternfish', name: 'Lanternfish', type: 'Fish', description: 'Bioluminescent deep diver', image: 'https://images.unsplash.com/photo-1544551763-46a013bb70b5?auto=format&fit=crop&w=900&q=80' },
+            { slug: 'flounder', name: 'Flounder', type: 'Fish', description: 'Master of disguise on sand', image: 'https://images.unsplash.com/photo-1524704796725-9fc3044a58b2?auto=format&fit=crop&w=900&q=80' },
+            { slug: 'blue-tang', name: 'Blue Tang', type: 'Fish', description: 'Bright reef swimmer', image: 'https://images.unsplash.com/photo-1524704796725-9fc3044a58b2?auto=format&fit=crop&w=900&q=80' },
+            { slug: 'cleaner-wrasse', name: 'Cleaner Wrasse', type: 'Fish', description: 'Tiny reef helper', image: 'https://images.unsplash.com/photo-1524704796725-9fc3044a58b2?auto=format&fit=crop&w=900&q=80' },
+            { slug: 'sea-star', name: 'Sea Star', type: 'Echinoderm', description: 'Slow-moving reef star', image: 'https://images.unsplash.com/photo-1583212292454-1fe6229603b7?auto=format&fit=crop&w=900&q=80' },
+            { slug: 'sea-urchin', name: 'Sea Urchin', type: 'Echinoderm', description: 'Spined seafloor grazer', image: 'https://images.unsplash.com/photo-1583212292454-1fe6229603b7?auto=format&fit=crop&w=900&q=80' },
+            { slug: 'crab', name: 'Crab', type: 'Crustacean', description: 'Scuttling reef scavenger', image: 'https://images.unsplash.com/photo-1583212292454-1fe6229603b7?auto=format&fit=crop&w=900&q=80' },
+            { slug: 'lobster', name: 'Lobster', type: 'Crustacean', description: 'Night hunter of the reef', image: 'https://images.unsplash.com/photo-1583212292454-1fe6229603b7?auto=format&fit=crop&w=900&q=80' },
+            { slug: 'shrimp', name: 'Shrimp', type: 'Crustacean', description: 'Tiny reef cleaner', image: 'https://images.unsplash.com/photo-1583212292454-1fe6229603b7?auto=format&fit=crop&w=900&q=80' },
+            { slug: 'reef-crab', name: 'Reef Crab', type: 'Crustacean', description: 'Busy reef walker', image: 'https://images.unsplash.com/photo-1583212292454-1fe6229603b7?auto=format&fit=crop&w=900&q=80' }
+        ];
+
+        const animalGrid = document.getElementById('animalGrid');
+
+        animalGrid.innerHTML = animals.map((animal, index) => `
+            <a class="animal-card" href="animal-profile.html?animal=${animal.slug}" style="animation-delay: ${index * 50}ms;">
+                <img src="${animal.image}" alt="${animal.name}" loading="lazy">
+                <div class="card-copy">
+                    <h3>${animal.name}</h3>
+                    <p>${animal.description}</p>
+                </div>
+            </a>
+        `).join('');
+    </script>
+</body>
+</html>

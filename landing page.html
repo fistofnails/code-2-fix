@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>Centred Layout with Background</title>
+</head>
+<body class="home-page">
+    <video class="video-background" autoplay muted loop playsinline preload="auto" controls="false" controlslist="nodownload nofullscreen noplaybackrate" disablepictureinpicture aria-hidden="true">
+        <source src="photos/Screen%20Recording%202026-10-13%20144509.mp4" type="video/mp4">
+    </video>
+    <div class="video-overlay" aria-hidden="true"></div>
+    <div class="landing">
+        <header class="home-header">
+            <a href="landing page.html" class="brand" aria-label="Oceanic home">
+                <div class="logo-mark">O</div>
+                <span>Oceanic</span>
+            </a>
+
+            <nav class="top-nav" aria-label="Main navigation">
+                <a href="#about">About</a>
+                <a href="aquarium.html">Animals</a>
+                <a href="#habitats">Habitats</a>
+                <a href="#contact">Contact</a>
+            </nav>
+
+            <a href="sign in.html" class="sign-in">Sign in</a>
+        </header>
+
+        <main class="home-hero">
+            <div class="hero-copy">
+                <p class="eyebrow">Discover the sea</p>
+                <h1>Where the ocean tells its story.</h1>
+                <p>
+                    Explore a vibrant underwater world filled with reefs, sharks, turtles, and colorful marine life.
+                    Dive in and uncover the creatures that keep our planet thriving.
+                </p>
+
+                <div class="cta-row">
+                    <a href="aquarium.html" class="primary-btn">Explore animals</a>
+                    <a href="#about" class="secondary-btn">Learn more</a>
+                </div>
+
+                <ul class="mini-stats" aria-label="Ocean statistics">
+                    <li>
+                        <strong>60+</strong>
+                        <span>species</span>
+                    </li>
+                    <li>
+                        <strong>12</strong>
+                        <span>habitats</span>
+                    </li>
+                    <li>
+                        <strong>100%</strong>
+                        <span>wonder</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="hero-visual" aria-label="Ocean reef illustration">
+                <div class="visual-card main-card">
+                    <span class="card-label">Ocean highlight</span>
+                    <h2>Coral Reef</h2>
+                    <p>Home to colorful fish, reef sharks, and hidden marine treasures.</p>
+                </div>
+                <div class="visual-card floating-card">
+                    <span>Depth</span>
+                    <strong>20m</strong>
+                </div>
+                <div class="visual-card badge-card">
+                    <span>Current</span>
+                    <strong>Warm</strong>
+                </div>
+            </div>
+        </main>
+
+        <section class="feature-strip" id="about">
+            <article class="feature-card">
+                <span class="feature-kicker">Marine life</span>
+                <h3>Meet the animals</h3>
+                <p>From gentle giants to tiny reef fish, every species plays a role in the ocean ecosystem.</p>
+            </article>
+            <article class="feature-card">
+                <span class="feature-kicker">Safe habitats</span>
+                <h3>Protect the reef</h3>
+                <p>Healthy coral ecosystems support biodiversity, climate balance, and future generations.</p>
+            </article>
+            <article class="feature-card">
+                <span class="feature-kicker">Ocean wonder</span>
+                <h3>Explore more</h3>
+                <p>Travel through vibrant habitats and learn how life beneath the waves connects us all.</p>
+            </article>
+        </section>
+    </div>
+
+    <script>
+        (function () {
+            const currentUser = JSON.parse(localStorage.getItem('oceanicCurrentUser') || 'null');
+            const signInButton = document.querySelector('.sign-in');
+
+            if (signInButton && currentUser && currentUser.name) {
+                signInButton.textContent = 'Hi, ' + currentUser.name.split(' ')[0];
+                signInButton.setAttribute('title', 'Signed in as ' + currentUser.name);
+            }
+        })();
+    </script>
+</body>
+</html>
